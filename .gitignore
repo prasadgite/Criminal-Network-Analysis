@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data outputs
+datasets/processed/*
+divisions/01-data-engineering/output/*
+
+# Keep directory structure
+!datasets/processed/.gitkeep
+!divisions/01-data-engineering/output/.gitkeep
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
