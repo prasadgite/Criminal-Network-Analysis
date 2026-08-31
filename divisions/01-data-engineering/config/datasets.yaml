@@ -1,0 +1,299 @@
+version: "1.0"
+
+project:
+  name: "sandhaan"
+  division: "01-data-engineering"
+  schema_version: "1.0"
+  timezone: "Asia/Kolkata"
+
+storage:
+  raw_dir: "../../../datasets/raw"
+  processed_dir: "../../../datasets/processed"
+  reference_dir: "../../../datasets/reference"
+
+datasets:
+
+  persons:
+    file: "person.csv"
+    primary_key: "person_id"
+    status: "active"
+    schema_status: "pending"
+
+  cases:
+    file: "cases.csv"
+    primary_key: "case_id"
+    status: "active"
+    schema_status: "pending"
+
+  fir_narratives:
+    file: "fir_narratives.csv"
+    primary_key: "document_id"
+    status: "active"
+    schema_status: "pending"
+
+  phones:
+    file: "phones.csv"
+    primary_key: "phone_id"
+    status: "active"
+    schema_status: "pending"
+
+  cdr_records:
+    file: "cdr_records.csv"
+    primary_key: "cdr_id"
+    status: "active"
+    schema_status: "pending"
+
+  vehicles:
+    file: "vehicles.csv"
+    primary_key: "vehicle_id"
+    status: "active"
+    schema_status: "pending"
+
+  locations:
+    file: "locations.csv"
+    primary_key: "location_id"
+    status: "active"
+    schema_status: "pending"
+
+  location_events:
+    file: "location_events.csv"
+    primary_key: "event_id"
+    status: "active"
+    schema_status: "pending"
+
+  bank_accounts:
+    file: "bank_accounts.csv"
+    primary_key: "account_id"
+    status: "active"
+    schema_status: "pending"
+
+  transactions:
+    file: "transactions.csv"
+    primary_key: "transaction_id"
+    status: "active"
+    schema_status: "pending"
+
+  case_entities:
+    file: "case_entities.csv"
+    primary_key: "relationship_id"
+    status: "active"
+    schema_status: "confirmed"
+
+    columns:
+
+      relationship_id:
+        type: "string"
+        required: true
+
+      case_id:
+        type: "string"
+        required: true
+
+      source_entity_id:
+        type: "string"
+        required: true
+
+      source_entity_type:
+        type: "string"
+        required: true
+
+      relationship_type:
+        type: "string"
+        required: true
+
+      target_entity_id:
+        type: "string"
+        required: true
+
+      target_entity_type:
+        type: "string"
+        required: true
+
+      start_time:
+        type: "datetime"
+        required: true
+
+      end_time:
+        type: "datetime"
+        required: false
+
+      confidence:
+        type: "float"
+        required: true
+
+      source_document_id:
+        type: "string"
+        required: true
+
+      verified:
+        type: "boolean"
+        required: true
+
+      verification_status:
+        type: "string"
+        required: true
+
+  evidence:
+    file: "evidence.csv"
+    primary_key: "evidence_id"
+    status: "active"
+    schema_status: "pending"
+
+  organizations:
+    file: "organizations.csv"
+    primary_key: "organization_id"
+    status: "active"
+    schema_status: "pending"
+
+
+reference_datasets:
+
+  persons_ground_truth:
+    file: "persons_ground_truth.csv"
+    purpose: "entity_resolution_evaluation"
+    mutable: false
+
+relationships:
+
+  - name: "phone_registered_person"
+    child_dataset: "phones"
+    child_field: "registered_person_id"
+    parent_dataset: "persons"
+    parent_field: "person_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+  - name: "vehicle_registered_owner"
+    child_dataset: "vehicles"
+    child_field: "registered_owner_id"
+    parent_dataset: "persons"
+    parent_field: "person_id"
+    relationship_type: "foreign_key"
+    nullable: true
+
+  - name: "vehicle_current_owner"
+    child_dataset: "vehicles"
+    child_field: "current_owner_id"
+    parent_dataset: "persons"
+    parent_field: "person_id"
+    relationship_type: "foreign_key"
+    nullable: true
+
+  - name: "bank_account_holder"
+    child_dataset: "bank_accounts"
+    child_field: "holder_person_id"
+    parent_dataset: "persons"
+    parent_field: "person_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+  - name: "transaction_sender_account"
+    child_dataset: "transactions"
+    child_field: "sender_account_id"
+    parent_dataset: "bank_accounts"
+    parent_field: "account_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+  - name: "transaction_receiver_account"
+    child_dataset: "transactions"
+    child_field: "receiver_account_id"
+    parent_dataset: "bank_accounts"
+    parent_field: "account_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+  - name: "fir_case"
+    child_dataset: "fir_narratives"
+    child_field: "case_id"
+    parent_dataset: "cases"
+    parent_field: "case_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+  - name: "evidence_case"
+    child_dataset: "evidence"
+    child_field: "case_id"
+    parent_dataset: "cases"
+    parent_field: "case_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+  - name: "case_entity_case"
+    child_dataset: "case_entities"
+    child_field: "case_id"
+    parent_dataset: "cases"
+    parent_field: "case_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+  - name: "location_event_location"
+    child_dataset: "location_events"
+    child_field: "location_id"
+    parent_dataset: "locations"
+    parent_field: "location_id"
+    relationship_type: "foreign_key"
+    nullable: false
+
+polymorphic_relationships:
+
+  - name: "location_event_entity"
+    dataset: "location_events"
+
+    type_field: "entity_type"
+    id_field: "entity_id"
+
+    allowed_entities:
+
+      PERSON:
+        dataset: "persons"
+        primary_key: "person_id"
+
+      VEHICLE:
+        dataset: "vehicles"
+        primary_key: "vehicle_id"
+
+pending_relationships:
+
+  - name: "cdr_location"
+    child_dataset: "cdr_records"
+    child_field: "location_id"
+    candidate_parent_dataset: "locations"
+    candidate_parent_field: "location_id"
+    status: "pending_semantic_validation"
+
+categories:
+
+  operational:
+    - persons
+    - organizations
+    - cases
+    - fir_narratives
+    - phones
+    - cdr_records
+    - vehicles
+    - locations
+    - location_events
+    - bank_accounts
+    - transactions
+    - case_entities
+    - evidence
+
+  reference:
+    - persons_ground_truth
+
+  external_context:
+    - ncrb  - cdr_records
+    - vehicles
+    - locations
+    - location_events
+    - bank_accounts
+    - transactions
+    - case_entities
+    - evidence
+
+  reference:
+    - persons_ground_truth
+
+  external_context:
+    - ncrb
