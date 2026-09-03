@@ -1,0 +1,41 @@
+contract:
+
+  name: "SANDHAAN Data Contract"
+
+  version: "1.0"
+
+  owner: "Division 1 - Data Engineering"
+
+  downstream_consumers:
+    - "Division 2 - Entity Resolution"
+    - "Division 3 - Knowledge Graph"
+    - "Division 4 - Analytics"
+
+  guarantees:
+
+    raw_data_preserved: true
+
+    normalized_values_are_derived: true
+
+    entity_resolution_not_performed: true
+
+    lineage_required: true
+
+    schema_validation_required: true
+
+    quality_validation_required: true
+
+  datasets:
+    - persons
+    - cases
+    - phones
+    - cdr_records
+    - vehicles
+    - locations
+    - location_events
+    - bank_accounts
+    - transactions
+    - fir_narratives
+    - case_entities
+    - evidence
+    - organizations

@@ -1,0 +1,42 @@
+dataset:
+  name: "cases"
+  version: "1.0"
+
+  description: >
+    Criminal case records after Division 1
+    validation and normalization.
+
+  primary_key:
+    column: "case_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    case_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    case_title:
+      type: "string"
+      nullable: true
+      source_field: true
+
+    normalized_case_title:
+      type: "string"
+      nullable: true
+      derived: true
+
+  guarantees:
+
+    raw_case_title_preserved: true
+    timestamps_timezone_aware: true
+
+  limitations:
+
+    - >
+      Temporal columns are only normalized when
+      they exist in the source schema.

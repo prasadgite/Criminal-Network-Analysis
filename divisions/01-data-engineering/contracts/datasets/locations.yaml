@@ -1,0 +1,63 @@
+dataset:
+  name: "locations"
+  version: "1.0"
+
+  description: >
+    Location records after Division 1 validation
+    and normalization. Geographic text is cleaned
+    but coordinates are not altered.
+
+  primary_key:
+    column: "location_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    location_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    state:
+      type: "string"
+      nullable: true
+      source_field: true
+
+    normalized_state:
+      type: "string"
+      nullable: true
+      derived: true
+
+    district:
+      type: "string"
+      nullable: true
+      source_field: true
+
+    normalized_district:
+      type: "string"
+      nullable: true
+      derived: true
+
+    city:
+      type: "string"
+      nullable: true
+      source_field: true
+
+    normalized_city:
+      type: "string"
+      nullable: true
+      derived: true
+
+  guarantees:
+
+    raw_geographic_text_preserved: true
+    coordinates_not_altered: true
+
+  limitations:
+
+    - >
+      Latitude/longitude validation belongs to
+      quality validation, not transformation.

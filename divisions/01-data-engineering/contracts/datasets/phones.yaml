@@ -1,0 +1,63 @@
+dataset:
+  name: "phones"
+  version: "1.0"
+
+  description: >
+    Phone registration records after Division 1
+    validation and normalization. Phone numbers
+    are normalized to 91XXXXXXXXXX format where
+    possible.
+
+  primary_key:
+    column: "phone_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    phone_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    phone_number:
+      type: "string"
+      nullable: false
+      source_field: true
+
+    normalized_phone_number:
+      type: "string"
+      nullable: true
+      derived: true
+
+    registered_person_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+  relationships:
+
+    - name: "registered_person"
+      to_dataset: "persons"
+      from_column: "registered_person_id"
+      to_column: "person_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees:
+
+    raw_phone_number_preserved: true
+    normalized_phone_is_derived: true
+
+  limitations:
+
+    - >
+      same phone number does NOT imply same
+      person. Phone ownership resolution belongs
+      to Division 2.
+
+    - >
+      Unknown phone formats are returned as-is
+      without inventing valid numbers.

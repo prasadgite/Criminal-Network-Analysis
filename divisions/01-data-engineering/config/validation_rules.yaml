@@ -1,0 +1,103 @@
+version: "1.0"
+
+global:
+
+  fail_on_missing_required_column: true
+
+  fail_on_invalid_primary_key: true
+
+  fail_on_duplicate_primary_key: true
+
+  fail_on_unresolved_foreign_key: true
+
+  allow_unexpected_columns: false
+
+  trim_strings: true
+
+  empty_string_as_null: true
+
+  timezone: "Asia/Kolkata"
+
+
+primary_key:
+
+  nullable: false
+  unique: true
+
+
+foreign_key:
+
+  nullable: false
+  allow_unresolved: false
+
+
+temporal:
+
+  allow_future_timestamps: false
+  require_start_before_end: true
+
+
+# ──────────────────────────────────────────────────────────────
+# Quality checks  –  severity policy
+# ──────────────────────────────────────────────────────────────
+#   "error"   → dataset FAILS validation; pipeline must not proceed.
+#   "warning" → dataset may continue, but the issue is recorded
+#               and surfaced.  Warnings are NEVER suppressed.
+# ──────────────────────────────────────────────────────────────
+
+quality:
+
+  # A required field contains NULL / missing value
+  null_required_field: "error"
+
+  # Two or more rows share the same primary-key value
+  duplicate_primary_key: "error"
+
+  # Entire row is duplicated (all columns identical)
+  duplicate_record: "warning"
+
+  # Value falls outside an allowed domain / enum set
+  invalid_domain_value: "error"
+
+  # Numeric value outside its permitted range (see `ranges` below)
+  invalid_numeric_range: "error"
+
+  # Datetime value cannot be parsed or is nonsensical
+  invalid_datetime: "error"
+
+  # Temporal ordering violated (e.g. end_date < start_date)
+  temporal_inconsistency: "error"
+
+  # Column not declared in the dataset schema
+  unexpected_column: "error"
+
+
+# ──────────────────────────────────────────────────────────────
+# Numeric range constraints
+# ──────────────────────────────────────────────────────────────
+
+ranges:
+  confidence:
+    min: 0.0
+    max: 1.0
+
+
+normalization:
+
+  text:
+    trim: true
+    unicode_normalization: "NFKC"
+    preserve_original: true
+
+  phone:
+    preserve_original: true
+    target_country: "IN"
+
+  datetime:
+    timezone: "Asia/Kolkata"
+    output_format: "ISO8601"
+
+  geography:
+    normalize_state: true
+    normalize_district: true
+    normalize_city: true

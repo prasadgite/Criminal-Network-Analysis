@@ -1,0 +1,41 @@
+dataset:
+  name: "vehicles"
+  version: "1.0"
+
+  description: >
+    Vehicle registration records after Division 1
+    validation and normalization.
+
+  primary_key:
+    column: "vehicle_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    vehicle_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+  relationships:
+
+    - name: "registered_owner"
+      to_dataset: "persons"
+      from_column: "registered_owner_id"
+      to_column: "person_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+    - name: "current_owner"
+      to_dataset: "persons"
+      from_column: "current_owner_id"
+      to_column: "person_id"
+      relationship_type: "many_to_one"
+      enforced: false
+
+  guarantees: {}
+
+  limitations: []

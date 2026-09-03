@@ -1,0 +1,47 @@
+dataset:
+  name: "fir_narratives"
+  version: "1.0"
+
+  description: >
+    FIR narrative documents linked to cases.
+    Text content is preserved as-is for
+    Division 2 NLP processing.
+
+  primary_key:
+    column: "document_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    document_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    case_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+  relationships:
+
+    - name: "fir_case"
+      to_dataset: "cases"
+      from_column: "case_id"
+      to_column: "case_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees:
+
+    narrative_text_not_altered: true
+
+  limitations:
+
+    - >
+      Entity mentions within narrative text are
+      NOT extracted or resolved by Division 1.
+      NLP entity extraction belongs to Division 2.

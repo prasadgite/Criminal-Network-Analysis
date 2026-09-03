@@ -1,0 +1,9 @@
+version: "1.0"
+
+# Populated after inspecting actual
+# NCRB categories from source datasets.
+categories: {}
+
+# Maps source crime_head values to
+# normalized category identifiers.
+source_mappings: {}

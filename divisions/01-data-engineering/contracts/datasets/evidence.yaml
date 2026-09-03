@@ -1,0 +1,38 @@
+dataset:
+  name: "evidence"
+  version: "1.0"
+
+  description: >
+    Evidence records linked to cases.
+
+  primary_key:
+    column: "evidence_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    evidence_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    case_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+  relationships:
+
+    - name: "evidence_case"
+      to_dataset: "cases"
+      from_column: "case_id"
+      to_column: "case_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees: {}
+
+  limitations: []

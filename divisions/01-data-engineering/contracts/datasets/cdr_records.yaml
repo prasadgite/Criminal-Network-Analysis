@@ -1,0 +1,67 @@
+dataset:
+  name: "cdr_records"
+  version: "1.0"
+
+  description: >
+    Call Detail Records after Division 1
+    validation and normalization. Phone numbers
+    are normalized. Timestamps are timezone-aware.
+
+  primary_key:
+    column: "cdr_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    cdr_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    caller_phone:
+      type: "string"
+      nullable: false
+      identifier: true
+
+    callee_phone:
+      type: "string"
+      nullable: false
+      identifier: true
+
+    normalized_caller_phone:
+      type: "string"
+      nullable: true
+      derived: true
+
+    normalized_callee_phone:
+      type: "string"
+      nullable: true
+      derived: true
+
+    location_id:
+      type: "string"
+      nullable: true
+      identifier: true
+      relationship_status: "semantics_pending"
+
+  guarantees:
+
+    raw_phone_numbers_preserved: true
+    timestamps_timezone_aware: true
+
+  limitations:
+
+    - >
+      location_id must NOT be interpreted as a
+      canonical geographic location without an
+      explicit source-level relationship definition.
+      The CDR→Location semantic path may involve
+      intermediate cell tower mapping.
+
+    - >
+      caller_phone and callee_phone do NOT
+      imply person identity. Phone-to-person
+      resolution belongs to Division 2.

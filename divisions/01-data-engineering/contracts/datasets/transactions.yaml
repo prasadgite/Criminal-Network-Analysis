@@ -1,0 +1,55 @@
+dataset:
+  name: "transactions"
+  version: "1.0"
+
+  description: >
+    Financial transaction records after Division 1
+    validation and normalization. Amounts are
+    never altered.
+
+  primary_key:
+    column: "transaction_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    transaction_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    sender_account_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+    receiver_account_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+  relationships:
+
+    - name: "sender_account"
+      to_dataset: "bank_accounts"
+      from_column: "sender_account_id"
+      to_column: "account_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+    - name: "receiver_account"
+      to_dataset: "bank_accounts"
+      from_column: "receiver_account_id"
+      to_column: "account_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees:
+
+    amounts_not_altered: true
+    timestamps_timezone_aware: true
+
+  limitations: []

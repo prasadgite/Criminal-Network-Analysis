@@ -3,19 +3,54 @@ from pathlib import Path
 import pandas as pd
 
 
-def read_csv(path: str | Path) -> pd.DataFrame:
+class DataReadError(Exception):
+    """Raised when a dataset cannot be read."""
+
+
+def read_csv(
+    file_path: str | Path,
+    *,
+    encoding: str = "utf-8",
+) -> pd.DataFrame:
     """
-    Read a CSV file into a pandas DataFrame.
+    Read a CSV file without modifying the source file.
 
-    This is the single entry point for all CSV reading
-    in the ingestion layer.
+    Returns
+    -------
+    pandas.DataFrame
+        Raw contents of the CSV.
     """
 
-    path = Path(path)
+    file_path = Path(file_path)
 
-    if not path.exists():
+    if not file_path.exists():
         raise FileNotFoundError(
-            f"Data file not found: {path}"
+            f"Dataset file not found: {file_path}"
         )
 
-    return pd.read_csv(path)
+    if not file_path.is_file():
+        raise DataReadError(
+            f"Dataset path is not a file: {file_path}"
+        )
+
+    try:
+        return pd.read_csv(
+            file_path,
+            encoding=encoding,
+            low_memory=False,
+        )
+
+    except UnicodeDecodeError as exc:
+        raise DataReadError(
+            f"Unable to decode CSV using {encoding}: {file_path}"
+        ) from exc
+
+    except pd.errors.EmptyDataError as exc:
+        raise DataReadError(
+            f"CSV file is empty: {file_path}"
+        ) from exc
+
+    except pd.errors.ParserError as exc:
+        raise DataReadError(
+            f"CSV parsing failed: {file_path}"
+        ) from exc

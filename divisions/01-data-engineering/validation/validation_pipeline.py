@@ -5,6 +5,11 @@ from ingestion.loader import (
     load_dataset,
 )
 
+from .quality_validator import (
+    QualityValidationResult,
+    validate_quality,
+)
+
 from .schema_validator import (
     SchemaValidationResult,
     validate_schema,
@@ -15,7 +20,10 @@ def validate_dataset(
     config: dict,
     dataset_name: str,
     project_root: str | Path,
-) -> SchemaValidationResult:
+) -> tuple[
+    SchemaValidationResult,
+    QualityValidationResult | None,
+]:
 
     dataframe, _ = load_dataset(
         config,
@@ -28,8 +36,20 @@ def validate_dataset(
         dataset_name,
     )
 
-    return validate_schema(
+    schema_result = validate_schema(
         dataset_name,
         dataframe,
         dataset_config,
     )
+
+    if not schema_result.passed:
+
+        return schema_result, None
+
+    quality_result = validate_quality(
+        dataset_name,
+        dataframe,
+        dataset_config,
+    )
+
+    return schema_result, quality_result

@@ -1,0 +1,41 @@
+dataset:
+  name: "bank_accounts"
+  version: "1.0"
+
+  description: >
+    Bank account records after Division 1
+    validation and normalization.
+
+  primary_key:
+    column: "account_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    account_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    holder_person_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+  relationships:
+
+    - name: "account_holder"
+      to_dataset: "persons"
+      from_column: "holder_person_id"
+      to_column: "person_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees:
+
+    financial_data_not_altered: true
+
+  limitations: []

@@ -1,0 +1,17 @@
+states:
+
+  maharashtra:
+    canonical: "Maharashtra"
+
+  karnataka:
+    canonical: "Karnataka"
+
+  delhi:
+    canonical: "Delhi"
+
+
+# Populated after inspecting actual
+# geographic vocabulary from datasets.
+districts: {}
+
+cities: {}

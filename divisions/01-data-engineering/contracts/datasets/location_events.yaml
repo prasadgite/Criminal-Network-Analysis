@@ -1,0 +1,54 @@
+dataset:
+  name: "location_events"
+  version: "1.0"
+
+  description: >
+    Location event records linking entities
+    (persons or vehicles) to locations at
+    specific times.
+
+  primary_key:
+    column: "event_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    event_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    location_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+    entity_type:
+      type: "string"
+      nullable: false
+
+    entity_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+  relationships:
+
+    - name: "event_location"
+      to_dataset: "locations"
+      from_column: "location_id"
+      to_column: "location_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees: {}
+
+  limitations:
+
+    - >
+      entity_type and entity_id form a
+      polymorphic relationship. Valid entity
+      types are PERSON and VEHICLE.

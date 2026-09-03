@@ -1,0 +1,73 @@
+dataset:
+  name: "persons"
+  version: "1.0"
+
+  description: >
+    Canonical source-level person records after
+    Division 1 validation and normalization.
+    Does NOT contain entity-resolved identities.
+
+  primary_key:
+    column: "person_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    person_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    name:
+      type: "string"
+      nullable: false
+      identifier: false
+      source_field: true
+
+    normalized_name:
+      type: "string"
+      nullable: true
+      derived: true
+      source_field: false
+
+  relationships:
+
+    - name: "phone_registration"
+      from_dataset: "phones"
+      from_column: "registered_person_id"
+      to_column: "person_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+    - name: "vehicle_ownership"
+      from_dataset: "vehicles"
+      from_column: "registered_owner_id"
+      to_column: "person_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+    - name: "bank_account_holder"
+      from_dataset: "bank_accounts"
+      from_column: "holder_person_id"
+      to_column: "person_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees:
+
+    raw_name_preserved: true
+    normalized_name_is_derived: true
+    entity_resolution_not_applied: true
+
+  limitations:
+
+    - >
+      same name does NOT imply same person.
+      Entity resolution belongs to Division 2.
+
+    - >
+      normalized_name is a display-ready cleaned
+      representation, not a matching key.

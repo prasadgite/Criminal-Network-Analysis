@@ -1,0 +1,30 @@
+dataset:
+  name: "organizations"
+  version: "1.0"
+
+  description: >
+    Organization records after Division 1
+    validation and normalization.
+
+  primary_key:
+    column: "organization_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    organization_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+  guarantees: {}
+
+  limitations:
+
+    - >
+      Organization schema details will be
+      populated once the source schema is
+      formally frozen.

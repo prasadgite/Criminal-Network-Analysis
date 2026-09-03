@@ -1,0 +1,81 @@
+dataset:
+  name: "case_entities"
+  version: "1.0"
+
+  description: >
+    Case-entity relationship records defining
+    connections between cases and source-level
+    entities with confidence scores.
+
+  primary_key:
+    column: "relationship_id"
+    type: "string"
+    nullable: false
+    unique: true
+
+  columns:
+
+    relationship_id:
+      type: "string"
+      nullable: false
+      unique: true
+      identifier: true
+
+    case_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+    source_entity_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+    source_entity_type:
+      type: "string"
+      nullable: false
+
+    relationship_type:
+      type: "string"
+      nullable: false
+
+    target_entity_id:
+      type: "string"
+      nullable: false
+      identifier: true
+
+    target_entity_type:
+      type: "string"
+      nullable: false
+
+    confidence:
+      type: "float"
+      nullable: false
+
+    verified:
+      type: "boolean"
+      nullable: false
+
+    verification_status:
+      type: "string"
+      nullable: false
+
+  relationships:
+
+    - name: "case_entity_case"
+      to_dataset: "cases"
+      from_column: "case_id"
+      to_column: "case_id"
+      relationship_type: "many_to_one"
+      enforced: true
+
+  guarantees:
+
+    confidence_range: "0.0 to 1.0"
+
+  limitations:
+
+    - >
+      Entity IDs within case_entities are
+      source-level identifiers, NOT resolved
+      canonical entities.

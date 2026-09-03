@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import yaml
 
 from .models import IngestionResult
@@ -11,7 +12,7 @@ class DatasetConfigError(Exception):
 
 def load_config(config_path: str | Path) -> dict:
     """
-    Load and validate the Division 1 dataset configuration.
+    Load and validate datasets.yaml.
     """
 
     config_path = Path(config_path)
@@ -26,7 +27,7 @@ def load_config(config_path: str | Path) -> dict:
 
     if not isinstance(config, dict):
         raise DatasetConfigError(
-            "datasets.yaml must contain a YAML mapping."
+            "datasets.yaml must contain a mapping."
         )
 
     if "datasets" not in config:
@@ -42,7 +43,10 @@ def load_config(config_path: str | Path) -> dict:
     return config
 
 
-def get_dataset_config(config: dict, dataset_name: str) -> dict:
+def get_dataset_config(
+    config: dict,
+    dataset_name: str,
+) -> dict:
     """
     Return configuration for one dataset.
     """
@@ -63,19 +67,27 @@ def get_raw_dataset_path(
     project_root: str | Path,
 ) -> Path:
     """
-    Resolve the raw CSV path for a configured dataset.
+    Resolve raw dataset path.
+
+    Raw data is always read from:
+        datasets/raw/
     """
 
-    dataset_config = get_dataset_config(config, dataset_name)
+    dataset_config = get_dataset_config(
+        config,
+        dataset_name,
+    )
 
-    if "file" not in dataset_config:
+    filename = dataset_config.get("file")
+
+    if not filename:
         raise DatasetConfigError(
             f"Dataset '{dataset_name}' has no file configured."
         )
 
     raw_dir = Path(project_root) / "datasets" / "raw"
 
-    return raw_dir / dataset_config["file"]
+    return raw_dir / filename
 
 
 def load_dataset(
