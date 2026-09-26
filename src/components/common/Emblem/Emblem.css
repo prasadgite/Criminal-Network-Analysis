@@ -1,0 +1,37 @@
+/* ══════════════════════════════════════════════════════════════
+   Emblem — Government emblem placeholder
+   ══════════════════════════════════════════════════════════════ */
+
+.emblem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #a8bed4;
+}
+
+.emblem-mark {
+  display: grid;
+  width: 33px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid #48627d;
+  clip-path: polygon(50% 0, 94% 16%, 86% 82%, 50% 100%, 14% 82%, 6% 16%);
+  background: #0f2135;
+  color: #c5d6e8;
+}
+
+.emblem-mark span {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.emblem-motto {
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.emblem--compact .emblem-mark {
+  width: 30px;
+  height: 35px;
+}

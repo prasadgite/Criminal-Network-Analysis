@@ -1,0 +1,265 @@
+/* ============================================================
+   SANDHAAN — Request Official Access Page Styles
+   Investigation-Grade Multi-Section Dossier Form
+   ============================================================ */
+
+.request-access-viewport {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  padding: 40px 20px 80px 20px;
+  position: relative;
+  font-family: var(--font-body);
+}
+
+.request-access-card {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(67, 140, 255, 0.08);
+  padding: 38px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.access-intro-banner {
+  background: rgba(67, 140, 255, 0.06);
+  border-left: 3px solid var(--color-primary);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.access-intro-title {
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.access-intro-desc {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Multi-Section Form */
+.request-access-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.form-section-dossier {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+}
+
+.form-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-section-num {
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding: 2px 7px;
+  background: rgba(67, 140, 255, 0.1);
+  border: 1px solid rgba(67, 140, 255, 0.28);
+}
+
+.form-section-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.form-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 680px) {
+  .form-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-input-control {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-data);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+
+.form-input-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(67, 140, 255, 0.22);
+  background: var(--color-surface-hover);
+}
+
+.form-input-control::placeholder {
+  color: var(--color-text-faint);
+}
+
+.form-textarea-control {
+  width: 100%;
+  padding: 12px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 110px;
+  transition: all 0.2s ease;
+}
+
+.form-textarea-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(67, 140, 255, 0.22);
+}
+
+.form-select-control {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-data);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.form-select-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.document-upload-box {
+  background: rgba(33, 52, 75, 0.25);
+  border: 1px dashed var(--color-border-strong);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.document-upload-title {
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.document-upload-desc {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* Declarations Checkboxes */
+.declarations-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border-soft);
+  padding: 16px 18px;
+}
+
+.declaration-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.declaration-checkbox {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.declaration-text {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+/* Submit Bar */
+.form-submit-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-submit-application {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-data);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-submit-application:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  box-shadow: 0 4px 18px rgba(67, 140, 255, 0.4);
+}
+
+.btn-submit-application:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.form-error-banner {
+  padding: 12px 16px;
+  background: rgba(255, 100, 112, 0.1);
+  border: 1px solid rgba(255, 100, 112, 0.35);
+  color: #ff9ca4;
+  font-size: 12.5px;
+  font-family: var(--font-data);
+  line-height: 1.4;
+}

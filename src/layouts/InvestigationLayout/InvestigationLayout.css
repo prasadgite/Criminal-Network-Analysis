@@ -1,0 +1,9 @@
+.investigation-layout {
+  width: 100%;
+  min-width: 0;
+}
+
+.investigation-layout__content {
+  width: 100%;
+  min-width: 0;
+}

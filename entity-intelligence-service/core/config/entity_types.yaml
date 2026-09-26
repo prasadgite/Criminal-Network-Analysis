@@ -1,0 +1,5 @@
+entity_types:
+  - PERSON
+  - PHONE
+  - VEHICLE
+  - LOCATION

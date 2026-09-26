@@ -1,0 +1,12 @@
+extraction:
+  person:
+    method: spacy_ner
+
+  phone:
+    method: regex
+
+  vehicle:
+    method: regex
+
+  location:
+    method: spacy_ner

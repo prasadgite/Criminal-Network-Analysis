@@ -1,0 +1,367 @@
+/* ══════════════════════════════════════════════════════════════
+   SANDHAAN
+   Criminal Network Intelligence & Investigation Platform
+
+   FOOTER
+   Compact operational application footer
+   ══════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER SHELL
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer {
+  display: flex;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding:
+    0 var(--content-padding-x);
+
+  border-top:
+    1px solid var(--color-border-soft);
+
+  background:
+    rgba(7, 15, 26, 0.72);
+
+  color:
+    var(--color-text-muted);
+
+  font-family:
+    var(--font-data);
+
+  font-size:
+    8px;
+
+  letter-spacing:
+    0.04em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   PLATFORM IDENTITY
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__identity {
+  display: flex;
+
+  min-width: 0;
+
+  align-items: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+}
+
+.app-footer__brand {
+  flex: 0 0 auto;
+
+  color:
+    var(--color-text-secondary);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    11px;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.08em;
+}
+
+.app-footer__separator {
+  color:
+    var(--color-text-faint);
+}
+
+.app-footer__product {
+  overflow: hidden;
+
+  color:
+    var(--color-text-faint);
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   OPERATIONAL STATUS
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__status {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  white-space: nowrap;
+}
+
+.app-footer__status-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    7px;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   STATUS INDICATOR
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__status-dot {
+  display: block;
+
+  width: 5px;
+  height: 5px;
+
+  flex: 0 0 5px;
+
+  border-radius: 50%;
+}
+
+
+/* Online */
+
+.app-footer__status-dot--online {
+  background:
+    var(--color-success);
+
+  box-shadow:
+    0 0 0 3px
+    var(--color-success-soft);
+}
+
+
+/* Warning */
+
+.app-footer__status-dot--warning {
+  background:
+    var(--color-warning);
+
+  box-shadow:
+    0 0 0 3px
+    var(--color-warning-soft);
+}
+
+
+/* Critical */
+
+.app-footer__status-dot--critical {
+  background:
+    var(--color-danger);
+
+  box-shadow:
+    0 0 0 3px
+    var(--color-danger-soft);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   RIGHT-SIDE METADATA
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__meta {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  white-space: nowrap;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   ENVIRONMENT
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__environment {
+  padding:
+    3px 6px;
+
+  border:
+    1px solid var(--color-border);
+
+  border-radius:
+    3px;
+
+  background:
+    rgba(67, 140, 255, 0.06);
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    7px;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   SECURITY CLASSIFICATION
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__classification {
+  color:
+    #7089a2;
+
+  font-size:
+    7px;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   VERSION
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__version {
+  color:
+    var(--color-text-faint);
+
+  font-size:
+    7px;
+
+  letter-spacing:
+    0.05em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   HOVER / INTERACTION
+   ══════════════════════════════════════════════════════════════ */
+
+.app-footer__status-item:hover {
+  color:
+    var(--color-text-secondary);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   TABLET
+   ══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+  .app-footer {
+    gap: 12px;
+
+    padding:
+      0 18px;
+  }
+
+  .app-footer__product {
+    display: none;
+  }
+
+  .app-footer__status {
+    gap: 12px;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE
+   ══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 720px) {
+  .app-footer {
+    min-height: auto;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 8px 14px;
+
+    padding:
+      12px 16px;
+  }
+
+  .app-footer__identity {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .app-footer__status {
+    order: 2;
+
+    width: 100%;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+  }
+
+  .app-footer__meta {
+    order: 3;
+
+    width: 100%;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   SMALL MOBILE
+   ══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .app-footer__classification {
+    display: none;
+  }
+
+  .app-footer__status {
+    gap: 10px;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .app-footer__status-item {
+    transition: none;
+  }
+}

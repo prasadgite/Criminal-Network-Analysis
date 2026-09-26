@@ -1,0 +1,762 @@
+/* ══════════════════════════════════════════════════════════════
+   SANDHAAN
+   Criminal Network Intelligence & Investigation Platform
+
+   SIDEBAR
+   Global application navigation
+   ══════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════
+   SIDEBAR SHELL
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+
+  z-index: var(--z-sidebar);
+
+  display: flex;
+
+  width: var(--sidebar-width);
+  height: 100vh;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border-right: 1px solid var(--color-border);
+
+  background:
+    linear-gradient(
+      180deg,
+      #091523 0%,
+      #07101c 62%,
+      #081321 100%
+    );
+
+  box-shadow:
+    12px 0 28px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   RIGHT ACCENT LINE
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar::after {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 2px;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-primary),
+      transparent 36%,
+      transparent 80%,
+      #1d4f7c
+    );
+
+  opacity: 0.35;
+
+  pointer-events: none;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   BRAND
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar-brand {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  height: var(--topbar-height);
+  min-height: var(--topbar-height);
+
+  flex: 0 0 var(--topbar-height);
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 18px;
+
+  border-bottom: 1px solid var(--color-border-soft);
+
+  background:
+    rgba(7, 16, 28, 0.96);
+}
+
+.sidebar-brand-text {
+  min-width: 0;
+}
+
+.sidebar-brand strong {
+  display: block;
+
+  color: #eef6ff;
+
+  font-family: var(--font-display);
+
+  font-size: 21px;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+
+.sidebar-brand span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #607a96;
+
+  font-family: var(--font-data);
+
+  font-size: 7px;
+
+  letter-spacing: 0.12em;
+
+  white-space: nowrap;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   NAVIGATION
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar-nav {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 11px 10px 16px;
+
+  scrollbar-gutter: stable;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(78, 145, 255, 0.2)
+    transparent;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  min-height: 40px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(78, 145, 255, 0.16);
+
+  transition:
+    background-color var(--transition-normal);
+}
+
+.sidebar-nav:hover::-webkit-scrollbar-thumb {
+  background:
+    rgba(78, 145, 255, 0.28);
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(78, 145, 255, 0.46);
+}
+
+.sidebar-nav::-webkit-scrollbar-button {
+  display: none;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   NAVIGATION GROUP
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-group {
+  padding: 8px 0 4px;
+}
+
+.nav-group-items {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   GROUP LABEL
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-label {
+  display: block;
+
+  padding: 0 11px 7px;
+
+  color: #465f79;
+
+  font-family: var(--font-data);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.16em;
+
+  line-height: 1.2;
+
+  user-select: none;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   NAVIGATION ITEM
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item {
+  position: relative;
+
+  display: flex;
+
+  width: 100%;
+  height: 37px;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 11px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+
+  color: #849ab2;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   HOVER EDGE
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item::before {
+  position: absolute;
+
+  top: 7px;
+  bottom: 7px;
+  left: 0;
+
+  width: 2px;
+
+  border-radius: 0 2px 2px 0;
+
+  background: var(--color-primary);
+
+  content: "";
+
+  opacity: 0;
+
+  transition:
+    opacity var(--transition-normal);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   HOVER WASH
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item::after {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  content: "";
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(78, 145, 255, 0.035),
+      rgba(78, 145, 255, 0.012),
+      transparent
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity var(--transition-normal);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   ICON
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item svg {
+  position: relative;
+
+  z-index: 1;
+
+  flex: 0 0 auto;
+
+  color: #7189a2;
+
+  transition:
+    color var(--transition-normal);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   TEXT
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item > span {
+  position: relative;
+
+  z-index: 1;
+
+  min-width: 0;
+
+  color: inherit;
+
+  transition:
+    color var(--transition-normal);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   HOVER
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item:not(.is-active):not(:disabled):hover {
+  background:
+    rgba(25, 48, 73, 0.42);
+
+  border-color:
+    rgba(78, 145, 255, 0.18);
+
+  color:
+    #d5e3f1;
+
+  box-shadow:
+    inset 0 0 18px rgba(78, 145, 255, 0.025);
+}
+
+.nav-item:not(.is-active):not(:disabled):hover::before {
+  opacity: 0.28;
+}
+
+.nav-item:not(.is-active):not(:disabled):hover::after {
+  opacity: 1;
+}
+
+.nav-item:not(.is-active):not(:disabled):hover svg {
+  color: #91bdf2;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   ACTIVE
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item.is-active {
+  border-color:
+    #20446c;
+
+  background:
+    linear-gradient(
+      90deg,
+      #122b46,
+      #0d1b2b
+    );
+
+  color:
+    #ecf5ff;
+
+  box-shadow:
+    inset 3px 0 var(--color-primary);
+}
+
+.nav-item.is-active svg {
+  color:
+    #6facff;
+}
+
+.nav-item.is-active::before,
+.nav-item.is-active::after {
+  opacity: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   ACTIVE STATUS
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-status {
+  position: absolute;
+
+  right: 11px;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-success);
+
+  box-shadow:
+    0 0 0 3px
+    var(--color-success-soft);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   DISABLED / FUTURE MODULE
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item.is-disabled,
+.nav-item:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+.nav-item.is-disabled:hover,
+.nav-item:disabled:hover {
+  background: transparent;
+
+  border-color: transparent;
+
+  color: #849ab2;
+
+  box-shadow: none;
+}
+
+.nav-item.is-disabled:hover::before,
+.nav-item.is-disabled:hover::after {
+  opacity: 0;
+}
+
+.nav-coming-soon {
+  margin-left: auto;
+
+  color: var(--color-text-faint);
+
+  font-family: var(--font-data);
+
+  font-size: 6px;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   KEYBOARD FOCUS
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-item:focus-visible {
+  outline: none;
+
+  border-color:
+    rgba(78, 145, 255, 0.55);
+
+  box-shadow:
+    0 0 0 1px
+    rgba(78, 145, 255, 0.16);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   OPERATIONAL STATUS
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar-status {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 76px;
+
+  margin: 0 14px 16px;
+
+  padding: 12px;
+
+  border:
+    1px solid var(--color-border);
+
+  border-radius:
+    var(--radius-md);
+
+  background:
+    linear-gradient(
+      145deg,
+      #0b1928,
+      #0a1725
+    );
+}
+
+
+/* Status indicator */
+
+.sidebar-status-indicator {
+  display: grid;
+
+  width: 28px;
+  height: 28px;
+
+  flex: 0 0 28px;
+
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(65, 201, 137, 0.24);
+
+  border-radius: 50%;
+
+  background:
+    var(--color-success-soft);
+}
+
+.sidebar-status-indicator span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-success);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(65, 201, 137, 0.08);
+}
+
+
+/* Status copy */
+
+.sidebar-status-copy {
+  min-width: 0;
+}
+
+.sidebar-status-copy span {
+  display: block;
+
+  color:
+    var(--color-text-faint);
+
+  font-family:
+    var(--font-data);
+
+  font-size:
+    7px;
+
+  letter-spacing:
+    0.12em;
+}
+
+.sidebar-status-copy strong {
+  display: block;
+
+  margin-top: 2px;
+
+  color:
+    #a8d7c0;
+
+  font-family:
+    var(--font-data);
+
+  font-size:
+    9px;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.04em;
+}
+
+.sidebar-status-copy small {
+  display: block;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+
+  color:
+    var(--color-text-muted);
+
+  font-size:
+    8px;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar-close {
+  display: none;
+}
+
+.sidebar-scrim {
+  display: none;
+}
+
+
+@media (max-width: 960px) {
+  .sidebar {
+    transform:
+      translateX(-102%);
+
+    transition:
+      transform 240ms ease;
+  }
+
+  .sidebar.is-open {
+    transform:
+      translateX(0);
+  }
+
+
+  /* ────────────────────────────────────────────────────────────
+     Backdrop
+     ──────────────────────────────────────────────────────────── */
+
+  .sidebar-scrim {
+    position: fixed;
+
+    inset: 0;
+
+    z-index:
+      calc(var(--z-sidebar) - 1);
+
+    display: block;
+
+    padding: 0;
+
+    border: 0;
+
+    background:
+      rgba(2, 7, 13, 0.72);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+      opacity 220ms ease;
+  }
+
+  .sidebar-scrim.is-visible {
+    opacity: 1;
+
+    pointer-events: auto;
+  }
+
+
+  /* ────────────────────────────────────────────────────────────
+     Close button
+     ──────────────────────────────────────────────────────────── */
+
+  .sidebar .sidebar-close {
+    display: grid;
+
+    margin-left: auto;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   SMALL MOBILE
+   ══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .sidebar {
+    width:
+      min(
+        var(--sidebar-width),
+        calc(100vw - 32px)
+      );
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .sidebar-scrim,
+  .nav-item,
+  .nav-item::before,
+  .nav-item::after,
+  .nav-item svg,
+  .nav-item > span {
+    transition: none !important;
+  }
+}

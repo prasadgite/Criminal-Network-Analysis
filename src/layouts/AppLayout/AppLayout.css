@@ -1,0 +1,73 @@
+/* ══════════════════════════════════════════════════════════════
+   APP LAYOUT
+   Global application shell only.
+   Domain/investigation-specific layout belongs elsewhere.
+   ══════════════════════════════════════════════════════════════ */
+
+.app-layout {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 55% 0%,
+      rgba(40, 85, 137, 0.08),
+      transparent 28%
+    ),
+    var(--color-background);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Main application region
+   ────────────────────────────────────────────────────────────── */
+
+.app-layout__main {
+  display: flex;
+  min-width: 0;
+  min-height: 100vh;
+  margin-left: var(--sidebar-width);
+  padding-top: var(--topbar-height);
+  flex-direction: column;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Page content
+   ────────────────────────────────────────────────────────────── */
+
+.app-layout__content {
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  padding: var(--content-padding-y) var(--content-padding-x);
+}
+
+.app-layout__content-inner {
+  width: 100%;
+  max-width: var(--content-max-width);
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.app-layout__content-inner > * {
+  min-width: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Tablet
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .app-layout__main {
+    margin-left: 0;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Mobile
+   ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .app-layout__content {
+    padding: 16px;
+  }
+}

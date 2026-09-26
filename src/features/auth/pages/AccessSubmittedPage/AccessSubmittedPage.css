@@ -1,0 +1,150 @@
+/* ============================================================
+   SANDHAAN — Access Submitted Confirmation Page
+   ============================================================ */
+
+.submitted-viewport {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  padding: 24px;
+  position: relative;
+  font-family: var(--font-body);
+}
+
+.submitted-card {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 24px rgba(65, 201, 137, 0.08);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  text-align: center;
+}
+
+.submitted-status-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(65, 201, 137, 0.12);
+  border: 1px solid rgba(65, 201, 137, 0.4);
+  color: var(--color-success);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.submitted-heading {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.submitted-dossier-box {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.submitted-dossier-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.submitted-row-label {
+  font-family: var(--font-data);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.submitted-app-id {
+  font-family: var(--font-data);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
+}
+
+.submitted-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  background: rgba(240, 173, 70, 0.1);
+  border: 1px solid rgba(240, 173, 70, 0.35);
+  color: var(--color-warning);
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  align-self: flex-start;
+}
+
+.submitted-info-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.submitted-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-check-status-action {
+  padding: 12px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-data);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+}
+
+.btn-check-status-action:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-return-portal-action {
+  padding: 11px;
+  background: var(--color-surface-raised);
+  color: var(--color-text-secondary);
+  font-family: var(--font-data);
+  font-size: 12px;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+
+.btn-return-portal-action:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}

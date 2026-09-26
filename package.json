@@ -1,0 +1,33 @@
+{
+  "name": "sandhaan",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "dev:backend": "npm --prefix aigaragebackend run start:dev",
+    "dev:ai": ".\\.venv\\Scripts\\uvicorn --app-dir entity-intelligence-service api.main:app --port 8000 --reload --reload-dir entity-intelligence-service",
+    "dev:all": "concurrently -n \"AI_SERVICE,BACKEND,FRONTEND\" -c \"yellow,cyan,magenta\" \"npm run dev:ai\" \"npm run dev:backend\" \"npm run dev\"",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test:ai": ".\\.venv\\Scripts\\pytest entity-intelligence-service/core/tests",
+    "test": "npm run build && npm run typecheck"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "5.2.0",
+    "concurrently": "^10.0.5",
+    "typescript": "5.8.3",
+    "vite": "7.3.6"
+  }
+}

@@ -1,0 +1,152 @@
+.activation-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #070d17;
+  color: #dce8f6;
+}
+
+.activation-card {
+  width: min(500px, 100%);
+  box-sizing: border-box;
+  padding: 32px;
+  border: 1px solid #21344b;
+  border-radius: 7px;
+  background: #0d1827;
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+}
+
+.activation-eyebrow {
+  color: #7890aa;
+  font-size: .72rem;
+  letter-spacing: .14em;
+}
+
+.activation-card h1 {
+  margin: 8px 0;
+  font-size: 1.55rem;
+}
+
+.activation-card header p {
+  color: #8296ac;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.activation-card form {
+  display: grid;
+  gap: 16px;
+}
+
+.activation-card label {
+  display: grid;
+  gap: 7px;
+  color: #91a4b8;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.activation-card input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border: 1px solid #263b55;
+  border-radius: 5px;
+  background: #111f30;
+  color: #dce8f6;
+  font-size: .94rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.password-field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px;
+}
+
+.password-field button,
+.activation-card footer a {
+  border: 1px solid #263b55;
+  background: #0b1523;
+  color: #a9bdd1;
+  border-radius: 5px;
+  padding: 9px 11px;
+  text-decoration: none;
+}
+
+.password-rules {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid #1c2e43;
+  background: #0a1421;
+  color: #71869d;
+  font-size: .78rem;
+}
+
+.password-rules strong {
+  color: #a7b8c9;
+  margin-bottom: 2px;
+}
+
+.password-rules .pass {
+  color: #73c5a1;
+}
+
+.activation-submit {
+  padding: 12px;
+  border: 1px solid #315e84;
+  border-radius: 5px;
+  background: #17304b;
+  color: #e6f0fa;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.activation-submit:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.activation-alert {
+  margin-bottom: 15px;
+  padding: 11px 13px;
+  border-radius: 5px;
+  line-height: 1.45;
+}
+
+.activation-alert--error {
+  border: 1px solid #593132;
+  background: #1c1113;
+  color: #e5a1a1;
+}
+
+.activation-alert--success {
+  border: 1px solid #285344;
+  background: #0d1d19;
+  color: #8fd0b3;
+}
+
+.activation-card footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+  color: #657b92;
+  font-size: .75rem;
+}
+
+.activation-card footer a {
+  color: #9db5cc;
+}
+
+@media (max-width: 560px) {
+  .activation-page { padding: 12px; }
+  .activation-card { padding: 22px; }
+  .activation-card footer { flex-direction: column; align-items: flex-start; }
+}

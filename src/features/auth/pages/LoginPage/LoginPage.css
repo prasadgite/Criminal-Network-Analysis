@@ -1,0 +1,375 @@
+/* ============================================================
+   SANDHAAN — Login Page UI
+   Investigation-Grade Terminal Aesthetics
+   ============================================================ */
+
+.login-viewport {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+.login-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 50% 25%, rgba(67, 140, 255, 0.08) 0%, transparent 65%),
+    linear-gradient(to right, rgba(33, 52, 75, 0.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(33, 52, 75, 0.14) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+  z-index: 0;
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 24px rgba(67, 140, 255, 0.08);
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header & Brand */
+.auth-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 18px;
+}
+
+.auth-classification-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-data);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: rgba(67, 140, 255, 0.08);
+  border: 1px solid rgba(67, 140, 255, 0.28);
+  padding: 4px 10px;
+  align-self: flex-start;
+}
+
+.auth-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-emblem {
+  width: 32px;
+  height: 32px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-family: var(--font-data);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  box-shadow: 0 0 10px rgba(67, 140, 255, 0.2);
+}
+
+.auth-title-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-title-h1 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.auth-terminal-sub {
+  font-family: var(--font-data);
+  font-size: 9.5px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Error Banner */
+.login-error-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(255, 100, 112, 0.1);
+  border: 1px solid rgba(255, 100, 112, 0.35);
+  color: #ff9ca4;
+  font-size: 12px;
+  font-family: var(--font-data);
+  line-height: 1.4;
+}
+
+.login-error-icon {
+  color: var(--color-danger);
+  font-weight: bold;
+}
+
+/* Form Fields */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.auth-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-data);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  border-radius: 0px;
+  transition: all 0.2s ease;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(67, 140, 255, 0.25);
+  background: var(--color-surface-hover);
+}
+
+.login-input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-family: var(--font-data);
+  font-size: 10px;
+  cursor: pointer;
+  padding: 4px 6px;
+  text-transform: uppercase;
+}
+
+.password-toggle-btn:hover {
+  color: var(--color-primary);
+}
+
+/* Submit Action Button */
+.login-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-data);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.login-submit-btn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  box-shadow: 0 4px 16px rgba(67, 140, 255, 0.35);
+}
+
+.login-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* New User / Access Request Section */
+.login-portal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 18px;
+}
+
+.portal-action-heading {
+  font-family: var(--font-data);
+  font-size: 10.5px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.btn-request-access-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-primary);
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-request-access-link:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(67, 140, 255, 0.2);
+}
+
+.btn-check-status-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--color-border-soft);
+  color: var(--color-text-secondary);
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-check-status-link:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+  background: var(--color-surface-raised);
+}
+
+/* Quick Fill Dev Credential Pill (Development Only) */
+.login-dev-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(33, 52, 75, 0.35);
+  border: 1px dashed var(--color-border-strong);
+  font-size: 11px;
+  font-family: var(--font-data);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.login-dev-pill:hover {
+  background: rgba(67, 140, 255, 0.08);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.dev-fill-tag {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Card Footer Security Text */
+.auth-card-footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-security-notice {
+  font-family: var(--font-data);
+  font-size: 9.5px;
+  color: var(--color-text-faint);
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.auth-footer-nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-back-link {
+  font-family: var(--font-data);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.auth-back-link:hover {
+  color: var(--color-primary);
+}

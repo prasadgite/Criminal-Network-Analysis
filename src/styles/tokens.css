@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+/* ============================================================
+   SANDHAAN
+   Design Tokens
+   Dark Intelligence / Investigation Interface
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  /* ==========================================================
+     Typography
+     ========================================================== */
+
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-data: "IBM Plex Mono", monospace;
+
+  /* ==========================================================
+     Application Surfaces
+     ========================================================== */
+
+  --color-background: #070d17;
+  --color-background-elevated: #0a1220;
+
+  --color-surface: #0d1827;
+  --color-surface-raised: #111f30;
+  --color-surface-hover: #15263a;
+
+  --color-sidebar: #08111e;
+  --color-topbar: #091421;
+
+  /* ==========================================================
+     Borders
+     ========================================================== */
+
+  --color-border: #21344b;
+  --color-border-soft: #17283c;
+  --color-border-strong: #2e4766;
+
+  /* ==========================================================
+     Text
+     ========================================================== */
+
+  --color-text-primary: #dce8f6;
+  --color-text-secondary: #8da4bb;
+  --color-text-muted: #607891;
+  --color-text-faint: #435b73;
+
+  /* ==========================================================
+     Primary
+     ========================================================== */
+
+  --color-primary: #438cff;
+  --color-primary-hover: #3275db;
+  --color-primary-soft: rgba(67, 140, 255, 0.12);
+
+  /* ==========================================================
+     Semantic Colors
+     ========================================================== */
+
+  --color-success: #41c989;
+  --color-success-soft: rgba(65, 201, 137, 0.12);
+
+  --color-warning: #f0ad46;
+  --color-warning-soft: rgba(240, 173, 70, 0.12);
+
+  --color-danger: #ff6470;
+  --color-danger-soft: rgba(255, 100, 112, 0.12);
+
+  --color-info: #438cff;
+  --color-info-soft: rgba(67, 140, 255, 0.12);
+
+  /* ==========================================================
+     Layout
+     ========================================================== */
+
+  --topbar-height: 68px;
+  --sidebar-width: 252px;
+  --sidebar-collapsed-width: 72px;
+
+  --content-padding-x: 28px;
+  --content-padding-y: 24px;
+
+  --content-max-width: 1800px;
+
+  /* ==========================================================
+     Spacing
+     ========================================================== */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ==========================================================
+     Radius
+     ========================================================== */
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* ==========================================================
+     Shadows
+     ========================================================== */
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  /* ==========================================================
+     Motion
+     ========================================================== */
+
+  --transition-fast: 120ms ease;
+  --transition-normal: 180ms ease;
+  --transition-slow: 260ms ease;
+
+  /* ==========================================================
+     Typography Scale
+     ========================================================== */
+
+  --text-xs: 10px;
+  --text-sm: 12px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+
+  /* ==========================================================
+     Z-Index Layers
+     ========================================================== */
+
+  --z-base: 1;
+  --z-content: 10;
+  --z-sidebar: 40;
+  --z-topbar: 50;
+  --z-overlay: 100;
+  --z-modal: 200;
+}

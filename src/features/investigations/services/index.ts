@@ -1,0 +1,1 @@
+export { investigationService } from './investigationService';

@@ -1,0 +1,51 @@
+import type { Case } from "@/types";
+
+export const mockCases: Case[] = [
+  {
+    caseId: "CASE-2026-001",
+    firNumber: "FIR-2026-001",
+    caseType: "Investigation",
+    crimeCategory: "Crime Against Women",
+    crimeSubcategory: "Harassment",
+    ipcSection: "Section 78",
+    registrationDate: "2026-09-10",
+    incidentDate: "2026-09-08",
+    incidentTime: "21:30",
+    policeStationId: "PS-PUNE-001",
+    district: "Pune",
+    city: "Pune",
+    state: "Maharashtra",
+    latitude: 18.5074,
+    longitude: 73.8077,
+    caseStatus: "open",
+    severity: "high",
+    investigatingOfficerId: "OFF-001",
+    source: "MVP_SYNTHETIC",
+    description:
+      "Synthetic investigation case for frontend development.",
+  },
+
+  {
+    caseId: "CASE-2026-002",
+    firNumber: "FIR-2026-002",
+    caseType: "Investigation",
+    crimeCategory: "Crime Against Women",
+    crimeSubcategory: "Threat",
+    ipcSection: "Section 351",
+    registrationDate: "2026-09-12",
+    incidentDate: "2026-09-11",
+    incidentTime: "20:15",
+    policeStationId: "PS-PUNE-002",
+    district: "Pune",
+    city: "Pune",
+    state: "Maharashtra",
+    latitude: 18.4966,
+    longitude: 73.9419,
+    caseStatus: "open",
+    severity: "medium",
+    investigatingOfficerId: "OFF-002",
+    source: "MVP_SYNTHETIC",
+    description:
+      "Synthetic investigation case for frontend development.",
+  },
+];

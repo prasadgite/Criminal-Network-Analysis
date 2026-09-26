@@ -1,0 +1,438 @@
+/* SANDHAAN — Executive Investigation Dashboard */
+
+.dashboard-page {
+  padding: 24px 32px;
+  max-width: 1440px;
+  margin: 0 auto;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 20px;
+}
+
+.dashboard-header__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.dashboard-header h1 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.dashboard-header p {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.dashboard-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+}
+
+.dashboard-status-pulse {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.dashboard-refresh-btn {
+  padding: 8px 16px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dashboard-refresh-btn:hover:not(:disabled) {
+  background: #334155;
+  color: #ffffff;
+}
+
+/* Quick Search / Actions Toolbar */
+.dashboard-quick-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #0b1329;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.dashboard-search-form {
+  display: flex;
+  gap: 8px;
+}
+
+.dashboard-search-input {
+  flex: 1;
+  padding: 10px 14px;
+  background: #030712;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  color: #f8fafc;
+  font-size: 0.85rem;
+}
+
+.dashboard-search-input:focus {
+  outline: none;
+  border-color: #0284c7;
+}
+
+.dashboard-search-btn {
+  padding: 10px 16px;
+  background: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dashboard-search-btn:hover {
+  background: #0369a1;
+}
+
+.dashboard-quick-links {
+  display: flex;
+  gap: 10px;
+}
+
+.dashboard-quick-chip {
+  padding: 8px 14px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.dashboard-quick-chip:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+/* KPI Row */
+.dashboard-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.dashboard-kpi-card {
+  padding: 20px 24px;
+  background: #090e1f;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-kpi-card:hover {
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+}
+
+.dashboard-kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #334155;
+}
+
+.dashboard-kpi-card--critical::before {
+  background: #ef4444;
+}
+
+.dashboard-kpi-card--active::before {
+  background: #0284c7;
+}
+
+.dashboard-kpi-card--entities::before {
+  background: #a855f7;
+}
+
+.dashboard-kpi-card--locations::before {
+  background: #10b981;
+}
+
+.dashboard-kpi-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.dashboard-kpi-val {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 10px 0 6px 0;
+  letter-spacing: -0.03em;
+}
+
+.dashboard-kpi-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-kpi-arrow {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+/* Main Split: Findings Feed vs Activity Feed */
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+
+.dashboard-feed-panel {
+  background: #090e1f;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dashboard-feed-header {
+  padding: 16px 20px;
+  background: #0b1329;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-feed-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dashboard-feed-link {
+  font-size: 0.8rem;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dashboard-feed-link:hover {
+  text-decoration: underline;
+}
+
+.dashboard-feed-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Findings Item in Feed */
+.dashboard-finding-item {
+  padding: 14px 16px;
+  background: #030712;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.15s ease;
+}
+
+.dashboard-finding-item:hover {
+  border-color: #334155;
+}
+
+.dashboard-finding-item__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.dashboard-finding-item__title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.dashboard-finding-item__badges {
+  display: flex;
+  gap: 6px;
+}
+
+.dashboard-pill {
+  padding: 2px 8px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dashboard-pill--critical {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.dashboard-pill--high {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.dashboard-finding-item__desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.dashboard-finding-item__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #131c31;
+  padding-top: 8px;
+}
+
+.dashboard-finding-entities {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.dashboard-entity-tag {
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  background: #1e293b;
+  color: #38bdf8;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: monospace;
+}
+
+.dashboard-inspect-link {
+  font-size: 0.78rem;
+  color: #38bdf8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Timeline Item in Feed */
+.dashboard-timeline-item {
+  padding: 12px 14px;
+  background: #030712;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dashboard-timeline-item__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.dashboard-timeline-type {
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.dashboard-timeline-item__title {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.dashboard-timeline-link {
+  align-self: flex-start;
+  font-size: 0.76rem;
+  color: #38bdf8;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-quick-bar {
+    grid-template-columns: 1fr;
+  }
+}

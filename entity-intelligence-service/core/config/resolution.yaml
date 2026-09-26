@@ -1,0 +1,22 @@
+resolution:
+  person:
+    exact_match: true
+    alias_match: true
+    fuzzy_match: true
+    fuzzy_threshold: 0.90
+
+  phone:
+    exact_match: true
+
+  vehicle:
+    exact_match: true
+
+  location:
+    exact_match: true
+    fuzzy_match: true
+    fuzzy_threshold: 0.90
+
+statuses:
+  - RESOLVED
+  - AMBIGUOUS
+  - UNRESOLVED

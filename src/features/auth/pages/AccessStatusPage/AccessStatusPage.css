@@ -1,0 +1,258 @@
+/* ============================================================
+   SANDHAAN — Application Status Page Styles
+   Tactical Timeline & Official Verification Card
+   ============================================================ */
+
+.status-viewport {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  padding: 40px 20px 80px 20px;
+  position: relative;
+  font-family: var(--font-body);
+}
+
+.status-card {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 24px rgba(67, 140, 255, 0.08);
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.status-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 580px) {
+  .status-input-row {
+    flex-direction: column;
+  }
+}
+
+.status-search-input {
+  flex: 1;
+  padding: 11px 14px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  font-family: var(--font-data);
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.status-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(67, 140, 255, 0.25);
+}
+
+.btn-search-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-search-status:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.btn-search-status:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Status Result Dossier */
+.status-result-dossier {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.status-dossier-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border-soft);
+  padding-bottom: 12px;
+}
+
+.status-app-badge {
+  font-family: var(--font-data);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.status-state-pill {
+  padding: 4px 10px;
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.status-state-pill.pending {
+  background: rgba(240, 173, 70, 0.1);
+  border-color: rgba(240, 173, 70, 0.35);
+  color: var(--color-warning);
+}
+
+.status-state-pill.review {
+  background: rgba(67, 140, 255, 0.1);
+  border-color: rgba(67, 140, 255, 0.35);
+  color: var(--color-primary);
+}
+
+.status-state-pill.approved {
+  background: rgba(65, 201, 137, 0.1);
+  border-color: rgba(65, 201, 137, 0.35);
+  color: var(--color-success);
+}
+
+.status-state-pill.rejected {
+  background: rgba(255, 100, 112, 0.1);
+  border-color: rgba(255, 100, 112, 0.35);
+  color: var(--color-danger);
+}
+
+.status-state-pill.info {
+  background: rgba(240, 173, 70, 0.12);
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+/* Status Message Box */
+.status-msg-box {
+  padding: 12px 14px;
+  background: var(--color-surface-raised);
+  border-left: 3px solid var(--color-primary);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.status-msg-box.approved {
+  border-left-color: var(--color-success);
+  color: #bbf7d0;
+}
+
+.status-msg-box.rejected {
+  border-left-color: var(--color-danger);
+  color: #ff9ca4;
+}
+
+/* Status Timeline */
+.status-timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+}
+
+.timeline-step::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 22px;
+  bottom: -16px;
+  width: 2px;
+  background: var(--color-border-soft);
+}
+
+.timeline-step:last-child::before {
+  display: none;
+}
+
+.timeline-step.completed::before {
+  background: var(--color-success);
+}
+
+.timeline-step-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-data);
+  font-size: 11px;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  z-index: 1;
+}
+
+.timeline-step.completed .timeline-step-indicator {
+  background: rgba(65, 201, 137, 0.15);
+  border-color: var(--color-success);
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.timeline-step.active .timeline-step-indicator {
+  background: rgba(67, 140, 255, 0.2);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(67, 140, 255, 0.4);
+}
+
+.timeline-step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.timeline-step-label {
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.timeline-step-sub {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
