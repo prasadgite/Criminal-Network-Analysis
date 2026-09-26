@@ -1,0 +1,12 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "include": [
+    "entity-intelligence-service"
+  ],
+  "extraPaths": [
+    "entity-intelligence-service",
+    "entity-intelligence-service/core"
+  ],
+  "reportMissingImports": "warning"
+}

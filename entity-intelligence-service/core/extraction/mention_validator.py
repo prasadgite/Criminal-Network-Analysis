@@ -46,9 +46,12 @@ class MentionValidator:
         All values are normalized to lowercase.
         """
 
-        locations = self.location_df if self.location_df is not None else pd.read_csv(
-            self.location_file
-        )
+        if self.location_df is not None:
+            locations = self.location_df
+        elif self.location_file is not None:
+            locations = pd.read_csv(self.location_file)
+        else:
+            locations = pd.DataFrame()
 
         names = set()
 

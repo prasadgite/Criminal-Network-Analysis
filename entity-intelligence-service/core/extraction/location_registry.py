@@ -33,7 +33,7 @@ class LocationRegistryExtractor:
 
             location_name = row.get("location_name")
 
-            if pd.notna(location_name):
+            if bool(pd.notna(location_name)):
 
                 normalized = self.normalize_name(
                     location_name

@@ -11,11 +11,18 @@ core_dir = Path(__file__).resolve().parent.parent / "core"
 if str(core_dir) not in sys.path:
     sys.path.insert(0, str(core_dir))
 
-from extraction.hybrid import HybridEntityExtractor
-from extraction.mention_validator import MentionValidator
-from candidate_generation.person_candidate_generator import PersonCandidateGenerator
-from resolution.person_resolver import PersonResolver
-from resolution.person_context import PersonContextBuilder
+try:
+    from extraction.hybrid import HybridEntityExtractor
+    from extraction.mention_validator import MentionValidator
+    from candidate_generation.person_candidate_generator import PersonCandidateGenerator
+    from resolution.person_resolver import PersonResolver
+    from resolution.person_context import PersonContextBuilder
+except ImportError:
+    from ..core.extraction.hybrid import HybridEntityExtractor  # type: ignore
+    from ..core.extraction.mention_validator import MentionValidator  # type: ignore
+    from ..core.candidate_generation.person_candidate_generator import PersonCandidateGenerator  # type: ignore
+    from ..core.resolution.person_resolver import PersonResolver  # type: ignore
+    from ..core.resolution.person_context import PersonContextBuilder  # type: ignore
 
 DEFAULT_NEON_URL = (
     "postgresql://neondb_owner:npg_bEUj5tZ8zYPw@"
@@ -51,7 +58,7 @@ class EntityIntelligenceService:
             person_rows = cur.fetchall()
             df_persons = pd.DataFrame(
                 person_rows,
-                columns=['person_id', 'full_name', 'aliases', 'date_of_birth', 'gender', 'national_id']
+                columns=pd.Index(['person_id', 'full_name', 'aliases', 'date_of_birth', 'gender', 'national_id'])
             )
 
             # 2. Load locations from NeonDB
@@ -59,15 +66,15 @@ class EntityIntelligenceService:
             location_rows = cur.fetchall()
             df_locations = pd.DataFrame(
                 location_rows,
-                columns=['location_id', 'location_name', 'area', 'city', 'district']
+                columns=pd.Index(['location_id', 'location_name', 'area', 'city', 'district'])
             )
 
             # 3. Load phones & vehicles for context builder
             cur.execute("SELECT phone_id, phone_number, registered_person_id FROM phones;")
-            phones_df = pd.DataFrame(cur.fetchall(), columns=['phone_id', 'phone_number', 'registered_person_id'])
+            phones_df = pd.DataFrame(cur.fetchall(), columns=pd.Index(['phone_id', 'phone_number', 'registered_person_id']))
 
             cur.execute("SELECT vehicle_id, registration_number, registered_owner_id, current_owner_id FROM vehicles;")
-            vehicles_df = pd.DataFrame(cur.fetchall(), columns=['vehicle_id', 'registration_number', 'registered_owner_id', 'current_owner_id'])
+            vehicles_df = pd.DataFrame(cur.fetchall(), columns=pd.Index(['vehicle_id', 'registration_number', 'registered_owner_id', 'current_owner_id']))
 
             # 4. Load case entities for contextual evidence matching (PersonContextBuilder)
             cur.execute("""
@@ -79,11 +86,11 @@ class EntityIntelligenceService:
             """)
             self.case_entities_df = pd.DataFrame(
                 cur.fetchall(),
-                columns=[
+                columns=pd.Index([
                     'case_id', 'source_entity_id', 'source_entity_type', 'relationship_type',
                     'target_entity_id', 'target_entity_type', 'confidence', 'verified',
                     'verification_status', 'source_document_id'
-                ]
+                ])
             )
             if not self.case_entities_df.empty:
                 self.case_entities_df['confidence'] = self.case_entities_df['confidence'].fillna(1.0)
@@ -104,14 +111,16 @@ class EntityIntelligenceService:
             # Build in-memory fast person lookup
             self.people_lookup = {}
             for row in df_persons.itertuples(index=False):
-                self.people_lookup[row.person_id] = {
-                    "person_id": str(row.person_id),
-                    "full_name": str(getattr(row, "full_name", "")),
-                    "aliases": str(getattr(row, "aliases", "")) if pd.notna(getattr(row, "aliases", None)) else None,
-                    "date_of_birth": str(getattr(row, "date_of_birth", "")) if pd.notna(getattr(row, "date_of_birth", None)) else None,
-                    "gender": str(getattr(row, "gender", "")) if pd.notna(getattr(row, "gender", None)) else None,
-                    "national_id": str(getattr(row, "national_id", "")) if pd.notna(getattr(row, "national_id", None)) else None,
-                }
+                pid = getattr(row, "person_id", None)
+                if pid:
+                    self.people_lookup[pid] = {
+                        "person_id": str(pid),
+                        "full_name": str(getattr(row, "full_name", "")),
+                        "aliases": str(getattr(row, "aliases", "")) if bool(pd.notna(getattr(row, "aliases", None))) else None,
+                        "date_of_birth": str(getattr(row, "date_of_birth", "")) if bool(pd.notna(getattr(row, "date_of_birth", None))) else None,
+                        "gender": str(getattr(row, "gender", "")) if bool(pd.notna(getattr(row, "gender", None))) else None,
+                        "national_id": str(getattr(row, "national_id", "")) if bool(pd.notna(getattr(row, "national_id", None))) else None,
+                    }
 
             self.data_source = "NeonDB (Cloud PostgreSQL)"
             return True
@@ -137,26 +146,26 @@ class EntityIntelligenceService:
         if case_entities_file.exists():
             self.case_entities_df = pd.read_csv(case_entities_file)
         else:
-            self.case_entities_df = pd.DataFrame(
-                columns=[
-                    'case_id', 'source_entity_id', 'source_entity_type', 'relationship_type',
-                    'target_entity_id', 'target_entity_type', 'confidence', 'verified',
-                    'verification_status', 'source_document_id'
-                ]
-            )
+            self.case_entities_df = pd.DataFrame({
+                'case_id': [], 'source_entity_id': [], 'source_entity_type': [], 'relationship_type': [],
+                'target_entity_id': [], 'target_entity_type': [], 'confidence': [], 'verified': [],
+                'verification_status': [], 'source_document_id': []
+            })
 
         self.people_lookup = {}
         if hasattr(self.extractor, "person_registry") and hasattr(self.extractor.person_registry, "people"):
             df = self.extractor.person_registry.people
             for row in df.itertuples(index=False):
-                self.people_lookup[row.person_id] = {
-                    "person_id": str(row.person_id),
-                    "full_name": str(getattr(row, "full_name", "")),
-                    "aliases": str(getattr(row, "aliases", "")) if pd.notna(getattr(row, "aliases", None)) else None,
-                    "date_of_birth": str(getattr(row, "date_of_birth", "")) if pd.notna(getattr(row, "date_of_birth", None)) else None,
-                    "gender": str(getattr(row, "gender", "")) if pd.notna(getattr(row, "gender", None)) else None,
-                    "national_id": str(getattr(row, "national_id", "")) if pd.notna(getattr(row, "national_id", None)) else None,
-                }
+                pid = getattr(row, "person_id", None)
+                if pid:
+                    self.people_lookup[pid] = {
+                        "person_id": str(pid),
+                        "full_name": str(getattr(row, "full_name", "")),
+                        "aliases": str(getattr(row, "aliases", "")) if bool(pd.notna(getattr(row, "aliases", None))) else None,
+                        "date_of_birth": str(getattr(row, "date_of_birth", "")) if bool(pd.notna(getattr(row, "date_of_birth", None))) else None,
+                        "gender": str(getattr(row, "gender", "")) if bool(pd.notna(getattr(row, "gender", None))) else None,
+                        "national_id": str(getattr(row, "national_id", "")) if bool(pd.notna(getattr(row, "national_id", None))) else None,
+                    }
         self.data_source = "Local CSV (Junction)"
 
     def get_random_fir(self) -> Dict[str, Any]:
@@ -214,7 +223,8 @@ class EntityIntelligenceService:
             """)
             counts = {r[0]: r[1] for r in cur.fetchall()}
             cur.execute("SELECT count(*) FROM entity_mentions;")
-            total = cur.fetchone()[0]
+            row_total = cur.fetchone()
+            total = int(row_total[0]) if row_total else 0
             cur.close()
             conn.close()
             return {
@@ -266,7 +276,8 @@ class EntityIntelligenceService:
                 {where_sql};
             """
             cur.execute(count_sql, params)
-            total_matching = cur.fetchone()[0]
+            count_row = cur.fetchone()
+            total_matching = int(count_row[0]) if count_row else 0
 
             # Fetch paginated rows
             data_sql = f"""

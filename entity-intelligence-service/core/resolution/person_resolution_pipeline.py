@@ -182,7 +182,7 @@ def serialize_json(value):
 
     def convert(obj):
 
-        if is_dataclass(obj):
+        if is_dataclass(obj) and not isinstance(obj, type):
             return convert(asdict(obj))
 
         if isinstance(obj, dict):
@@ -385,8 +385,8 @@ def main():
         # ----------------------------------------------------
 
         mention = {
-            "text_span": row.text_span,
-            "entity_type": row.entity_type,
+            "text_span": getattr(row, "text_span", ""),
+            "entity_type": getattr(row, "entity_type", ""),
         }
 
         # ----------------------------------------------------
@@ -420,15 +420,15 @@ def main():
         # ----------------------------------------------------
 
         mention_text = str(
-            row.text_span
+            getattr(row, "text_span", "")
         ).strip()
 
         document_id = str(
-            row.document_id
+            getattr(row, "document_id", "")
         )
 
         case_id = str(
-            row.case_id
+            getattr(row, "case_id", "")
         )
 
         # ----------------------------------------------------

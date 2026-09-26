@@ -78,7 +78,7 @@ class PersonRegistryExtractor:
             # Full name
             full_name = row.get("full_name")
 
-            if pd.notna(full_name):
+            if bool(pd.notna(full_name)):
                 normalized = self.normalize_name(full_name)
 
                 if normalized:
@@ -87,7 +87,7 @@ class PersonRegistryExtractor:
             # Alias
             alias = row.get("alias_name")
 
-            if pd.notna(alias):
+            if bool(pd.notna(alias)):
                 normalized = self.normalize_name(alias)
 
                 if normalized:
